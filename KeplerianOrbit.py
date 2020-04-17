@@ -27,10 +27,7 @@ for t in tList:
 
 
 plt.plot(xList, yList)
-plt.show()
-
-plt.plot(tList, xList)
-plt.show()
-
-plt.plot(tList, yList)
+plt.title("Elliptical Keplerian Orbit")
+plt.xlabel("X-Coordinate (m)")
+plt.ylabel("Y-Coordinate (m)")
 plt.show()

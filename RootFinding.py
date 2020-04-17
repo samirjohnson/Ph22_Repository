@@ -46,10 +46,19 @@ for i in range(1,15):
     errorListS.append(-math.log(abs(STup[0]-ZERO),2)); iterListS.append(STup[1]);
 
 plt.plot(iterListB, errorListB)
+plt.xlabel("Iterations")
+plt.ylabel("-log(error)")
+plt.title("Bisection Method")
 plt.show()
 
 plt.plot(iterListNR, errorListNR)
+plt.xlabel("Iterations")
+plt.ylabel("-log(error)")
+plt.title("Newton-Raphson Method")
 plt.show()
 
 plt.plot(iterListS, errorListS)
+plt.xlabel("Iterations")
+plt.ylabel("-log(error)")
+plt.title("Secant Method")
 plt.show()

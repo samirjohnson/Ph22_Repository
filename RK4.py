@@ -11,7 +11,7 @@ def RK4(vec, t, h, func):
 
 def evaluateODE(vecINIT, h, func, N):
     tList = np.linspace(0, N, int(N / h + 1))
-    vecList = [vecINIT]
-    for i in range(0,int(N/h)):
-        vecList.append(RK4(vecList[i], tList[i], h, func))
+    vecList = np.zeros(len(tList)); vecList[0] = vecINIT;
+    for i in range(1,int(N/h)+1):
+        vecList[i] = RK4(vecList[i-1], tList[i-1], h, func)
     return vecList

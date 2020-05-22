@@ -5,8 +5,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from random import random
 
-M = 1; G = 1; R = 1; a = 0.1; N = 40;
-tfinal = 2*math.pi*math.sqrt(R**3/(G*M)); timestep = tfinal/1000;
+M = 1; G = 1; R = 1; a = 0.1; N = 100;
+tfinal = 6*math.pi*math.sqrt(R**3/(G*M*N)); timestep = 0.005;
 
 def func(vec, t, h):
     acc = lambda x1, x2: -G * M * (x1 - x2) / (Vector.magnitude(x1 - x2)**(3) + Vector.magnitude(x1 - x2)*a**2)
@@ -31,14 +31,21 @@ for i in range(2*N):
 
 vecList = evaluateODE(vecINIT, timestep, func, tfinal)
 
-xList = []
-yList = []
+radialPos = []; radialV = [];
 for v in vecList:
     for i in v:
         if v.index(i)%2==0:
-            xList.append(i[0]); yList.append(i[1]);
+            radialPos.append(Vector.magnitude(i))
+        else:
+            radialV.append(Vector.magnitude(i))
+
+tList = np.linspace(0,tfinal, int(len(radialPos)/N))
 
 for i in range(N):
-    plt.plot(xList[i::N], yList[i::N])
-plt.xlabel('X'); plt.ylabel('Y');
+    plt.plot(tList,radialPos[i::N])
+plt.xlabel('t'); plt.ylabel('Radial Position');
+plt.show()
+for i in range(N):
+    plt.plot(tList, radialV[i::N])
+plt.xlabel('t'); plt.ylabel('Radial Velocity');
 plt.show()
